@@ -51,6 +51,34 @@ function renderTasks() {
     // Tambahkan tombol "Edit" di sini. Saat diklik, ganti `span`
     // menjadi <input> berisi teks task supaya bisa diubah,
     // lalu simpan perubahannya saat user menekan Enter / klik Save.
+    const editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "edit-btn";
+    editBtn.setAttribute("aria-label", "Edit task");
+    editBtn.textContent = "✎";
+    editBtn.addEventListener("click", () => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "task-edit-input";
+      input.value = task.text;
+      input.setAttribute("aria-label", "Edit task text");
+
+      const saveEdit = () => {
+        editTask(task.id, input.value);
+      };
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          saveEdit();
+        }
+      });
+
+      input.addEventListener("blur", saveEdit);
+
+      li.replaceChild(input, span);
+      input.focus();
+      input.select();
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-btn";
@@ -58,6 +86,7 @@ function renderTasks() {
     deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
     li.appendChild(span);
+    li.appendChild(editBtn);
     li.appendChild(deleteBtn);
     taskList.appendChild(li);
   });
@@ -97,6 +126,16 @@ function deleteTask(id) {
 // TODO (Fitur #2 - Edit Task):
 // Buat function editTask(id, newText) yang mengubah task.text
 // untuk task dengan id yang cocok, lalu panggil renderTasks().
+function editTask(id, newText) {
+  const trimmedText = newText.trim();
+  if (trimmedText === "") return;
+
+  const task = tasks.find((item) => item.id === id);
+  if (!task) return;
+
+  task.text = trimmedText;
+  renderTasks();
+}
 
 // TODO (Fitur #6 - Clear Completed):
 // Buat function clearCompleted() yang menghapus semua task dengan
