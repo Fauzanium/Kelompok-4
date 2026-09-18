@@ -1,5 +1,8 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -9,7 +12,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 40px 16px;
-  background: #f2f4f7;
+  background: #1a1e2d;;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #1f2937;
 }
@@ -17,22 +20,24 @@ body {
 .app {
   width: 100%;
   max-width: 480px;
-  background: #ffffff;
+  background: #e2e2e2;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
-  margin: 0 0 20px;
   font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1e2d;
   text-align: center;
+  margin-bottom: 24px;
 }
 
 .task-form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .task-form input {
@@ -63,22 +68,74 @@ h1 {
   Tandai tombol filter yang sedang aktif, misalnya dengan class ".active".
 */
 
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 2px solid #1a1e2d;
+  border-radius: 20px;
+  background: transparent;
+  color: #1a1e2d;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background: #1a1e2d;
+  color: #f4efe6;
+}
+
 .task-list {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .task-item {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid #e5e7eb;
+  gap: 12px;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #1a1e2d;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.action-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  background-color: #f3f4f6;
+  border: none;
   border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
 }
 
 .task-item span {
