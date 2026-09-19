@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -9,7 +10,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 40px 16px;
-  background: #f2f4f7;
+  background: #1a1e2d;;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #1f2937;
 }
@@ -17,22 +18,24 @@ body {
 .app {
   width: 100%;
   max-width: 480px;
-  background: #ffffff;
+  background: #e2e2e2;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 h1 {
-  margin: 0 0 20px;
   font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1e2d;
   text-align: center;
+  margin-bottom: 24px;
 }
 
 .task-form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .task-form input {
@@ -94,25 +97,71 @@ h1 {
 
 .task-list {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .task-item {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid #e5e7eb;
+  gap: 12px;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background-color: #1a1e2d;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.action-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  background-color: #f3f4f6;
+  border: none;
   border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
 }
 
 .task-item span {
   flex: 1;
   word-break: break-word;
+}
+
+.task-item .edit-btn {
+  border: none;
+  background: transparent;
+  color: #1f2a44;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.task-item .edit-btn:hover {
+  background: #f3efe9;
 }
 
 .task-item .delete-btn {
@@ -147,6 +196,21 @@ h1 {
   Tambahkan style untuk mode edit, misalnya input text yang muncul
   menggantikan <span> saat task sedang diedit.
 */
+.task-item .task-edit-input {
+  flex: 1;
+  border: 1px solid #d4cab8;
+  border-radius: 8px;
+  background: #f7f2ea;
+  color: #1f2937;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.task-item .task-edit-input:focus {
+  border-color: #1f2a44;
+  box-shadow: 0 0 0 2px rgba(31, 42, 68, 0.12);
+}
 
 /*
   TODO (Fitur #5 & #6 - Counter & Clear Completed):
