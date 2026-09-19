@@ -76,6 +76,13 @@ function renderTasks() {
       const span = document.createElement("span");
       span.className = "task-text";
       span.textContent = task.text;
+      
+      let badge = null;
+      if (task.panicLevel && !task.completed) {
+          badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = task.panicLevel;
+      }
 
       // TODO (Fitur #2 - Edit Task):
       // Tambahkan tombol "Edit" di sini. Saat diklik, ganti `span`
@@ -116,6 +123,7 @@ function renderTasks() {
       deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
       li.appendChild(checkbox);
+      if (badge) li.appendChild(badge);
       li.appendChild(span);
       li.appendChild(editBtn);
       li.appendChild(deleteBtn);
@@ -224,10 +232,46 @@ btnBatal.addEventListener("click", () => {
 });
 
 btnSubmitModal.addEventListener("click", () => {
-  addTask(modalInput.value); // Menyimpan tugas
+  addTask(modalInput.value, selectedPanik, selectedKapan); 
   
-  // Bersihkan form dan tutup modal
   taskInput.value = "";
   modalOverlay.classList.add("hidden");
   taskInput.focus();
 });
+
+let selectedPanik = 'KIAMAT DEKAT';
+let selectedKapan = 'Hari Ini';
+
+const panikBtns = document.querySelectorAll('#group-panik .btn-pill');
+const kapanBtns = document.querySelectorAll('#group-kapan .btn-pill');
+
+panikBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        panikBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        selectedPanik = e.target.getAttribute('data-value');
+    });
+});
+
+kapanBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        kapanBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        selectedKapan = e.target.getAttribute('data-value');
+    });
+});
+
+function addTask(text, panicLevel, time) {
+  const trimmed = text.trim();
+  if (trimmed === "") return;
+
+  tasks.push({
+    id: nextId++,
+    text: trimmed,
+    completed: false,
+    panicLevel: panicLevel || 'KIAMAT DEKAT',
+    time: time || 'Hari Ini'
+  });
+
+  renderTasks();
+}

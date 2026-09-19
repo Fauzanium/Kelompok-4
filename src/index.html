@@ -63,6 +63,23 @@
         <h2 class="modal-title">Nambah Beban Hidup Baru</h2>
 
         <input type="text" id="modal-input" class="modal-input" readonly>
+        <div class="modal-section">
+          <h3>Tingkat Priotitas</h3>
+          <div class="btn-group" id="group-panik">
+            <button type="button" class="btn-pill active" data-value="PENTING">PENTING</button>
+            <button type="button" class="btn-pill" data-value="SANTAI">SANTAI</button>
+            <button type="button" class="btn-pill" data-value="SANTAI BANGET">SANTAI BANGET</button>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3>Kapan Dikerjain?</h3>
+          <div class="btn-group" id="group-kapan">
+            <button type="button" class="btn-pill active" data-value="Hari Ini">Hari Ini</button>
+            <button type="button" class="btn-pill" data-value="Besok">Besok</button>
+            <button type="button" class="btn-pill" data-value="Pilih Tanggal">Pilih Tanggal</button>
+          </div>
+        </div>
 
         <div class="modal-actions">
           <button type="button" id="btn-batal" class="btn-text">Gak Jadi Deh</button>
