@@ -9,7 +9,7 @@
 <body>
   <main class="app">
     <h1>📋 My To Do List</h1>
-
+    <button type="button" id="theme-toggle" class="theme-toggle">Dark Mode</button>
     <form id="task-form" class="task-form">
       <input
         type="text"
@@ -24,7 +24,7 @@
       TODO (Fitur #3 - Filter Task):
       Tambahkan 3 tombol filter di sini: "Semua", "Aktif", "Selesai".
       Lihat README.md bagian "Fitur yang Harus Dibuat" nomor 3 untuk hint lengkap.
-
+    
       Contoh struktur:
       <div class="filters" id="filters">
         <button class="filter-btn active" data-filter="all">Semua</button>
@@ -32,6 +32,11 @@
         <button class="filter-btn" data-filter="completed">Selesai</button>
       </div>
     -->
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="active">Aktif</button>
+      <button class="filter-btn" data-filter="completed">Selesai</button>
+    </div>
 
     <ul id="task-list" class="task-list">
       <!-- Task dirender otomatis oleh js/app.js, jangan ditulis manual di sini -->
@@ -48,6 +53,40 @@
         <button id="clear-completed">Hapus yang Selesai</button>
       </div>
     -->
+
+    <div class="footer" id="footer">
+      <span id="task-counter">0 task tersisa</span>
+    </div>
+    
+  <div id="modal-overlay" class="modal-overlay hidden">
+      <div class="modal-card">
+        <h2 class="modal-title">Nambah Beban Hidup Baru</h2>
+
+        <input type="text" id="modal-input" class="modal-input" readonly>
+        <div class="modal-section">
+          <h3>Tingkat Priotitas</h3>
+          <div class="btn-group" id="group-panik">
+            <button type="button" class="btn-pill active" data-value="PENTING">PENTING</button>
+            <button type="button" class="btn-pill" data-value="SANTAI">SANTAI</button>
+            <button type="button" class="btn-pill" data-value="SANTAI BANGET">SANTAI BANGET</button>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3>Kapan Dikerjain?</h3>
+          <div class="btn-group" id="group-kapan">
+            <button type="button" class="btn-pill active" data-value="Hari Ini">Hari Ini</button>
+            <button type="button" class="btn-pill" data-value="Besok">Besok</button>
+            <button type="button" class="btn-pill" data-value="Pilih Tanggal">Pilih Tanggal</button>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-batal" class="btn-text">Gak Jadi Deh</button>
+          <button type="button" id="btn-submit" class="btn-dark">Gaskeun!</button>
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="js/app.js"></script>
