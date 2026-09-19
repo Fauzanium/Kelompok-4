@@ -67,7 +67,14 @@ function renderTasks() {
       // task.completed, dan tambahkan class "completed" pada `li`
       // kalau task.completed === true.
 
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "task-checkbox";
+      checkbox.checked = task.completed;
+      checkbox.addEventListener("change", () => toggleComplete(task.id));
+
       const span = document.createElement("span");
+      span.className = "task-text";
       span.textContent = task.text;
 
       // TODO (Fitur #2 - Edit Task):
@@ -108,8 +115,9 @@ function renderTasks() {
       deleteBtn.textContent = "✕";
       deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
+      li.appendChild(checkbox);
       li.appendChild(span);
-      li.appendChild(editBtn); // Tambahkan tombol edit ke dalam li
+      li.appendChild(editBtn);
       li.appendChild(deleteBtn);
       taskList.appendChild(li);
     });
@@ -117,6 +125,10 @@ function renderTasks() {
     // TODO (Fitur #5 - Counter):
     // Update elemen #task-counter di sini setiap kali renderTasks() dipanggil,
     // isinya jumlah task yang belum selesai. Contoh: "3 task tersisa".
+    if (taskCounter) {
+      const activeCount = tasks.filter((task) => !task.completed).length;
+      taskCounter.textContent = `${activeCount} task tersisa`;
+    }
   }
 
   // TODO (Fitur #4 - Simpan ke localStorage):
@@ -149,6 +161,14 @@ function deleteTask(id) {
 // TODO (Fitur #1 - Tandai Selesai):
 // Buat function toggleComplete(id) yang membalik nilai task.completed
 // untuk task dengan id yang cocok, lalu panggil renderTasks().
+
+function toggleComplete(id) {
+  const task = tasks.find((item) => item.id === id);
+  if (!task) return;
+
+  task.completed = !task.completed;
+  renderTasks();
+}
 
 // TODO (Fitur #2 - Edit Task):
 // Buat function editTask(id, newText) yang mengubah task.text
