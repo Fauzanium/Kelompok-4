@@ -1,4 +1,6 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -18,7 +20,7 @@ body {
 .app {
   width: 100%;
   max-width: 480px;
-  background: #e2e2e2;
+  background: #f4eee6;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -118,14 +120,14 @@ h1 {
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
-  background: #4f46e5;
+  background: #141624;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .task-form button:hover {
-  background: #4338ca;
+  background: #141624;
 }
 
 /*
@@ -158,9 +160,9 @@ h1 {
 }
 
 .filter-btn.active {
-  background: #4f46e5;
+  background: #141624;
   color: #ffffff;
-  border-color: #4f46e5;
+  border-color: #141624;
 }
 
 .task-list {

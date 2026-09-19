@@ -205,10 +205,30 @@ filterBtns.forEach(btn => {
   });
 });
 
+const modalOverlay = document.getElementById("modal-overlay");
+const modalInput = document.getElementById("modal-input");
+const btnBatal = document.getElementById("btn-batal");
+const btnSubmitModal = document.getElementById("btn-submit");
+
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  addTask(taskInput.value);
+  
+  const text = taskInput.value.trim();
+  if (text === "") return;
+  modalInput.value = text;
+  modalOverlay.classList.remove("hidden");
+});
+
+btnBatal.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+});
+
+btnSubmitModal.addEventListener("click", () => {
+  addTask(modalInput.value); // Menyimpan tugas
+  
+  // Bersihkan form dan tutup modal
   taskInput.value = "";
+  modalOverlay.classList.add("hidden");
   taskInput.focus();
 });
 
