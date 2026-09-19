@@ -8,6 +8,7 @@ const taskForm = document.getElementById("task-form");
 const taskInput = document.getElementById("task-input");
 const taskList = document.getElementById("task-list");
 const taskCounter = document.getElementById("task-counter");
+const clearCompletedBtn = document.getElementById("clear-completed");
 
 // Struktur satu task: { id, text, completed }
 // NOTE: "completed" sudah disiapkan di data model, tapi belum
@@ -196,6 +197,15 @@ function editTask(id, newText) {
 // Buat function clearCompleted() yang menghapus semua task dengan
 // completed === true dari array "tasks", lalu panggil renderTasks().
 // Jangan lupa tambahkan event listener untuk tombol #clear-completed.
+
+function clearCompleted() {
+  tasks = tasks.filter((task) => !task.completed);
+  renderTasks();
+}
+
+if (clearCompletedBtn) {
+  clearCompletedBtn.addEventListener("click", clearCompleted);
+}
 
 // TODO (Fitur #3 - Filter Task):
 // Simpan filter yang sedang aktif di sebuah variabel, misalnya
