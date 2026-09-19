@@ -143,6 +143,24 @@ h1 {
   word-break: break-word;
 }
 
+.task-item .edit-btn {
+  border: none;
+  background: transparent;
+  color: #1f2a44;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.task-item .edit-btn:hover {
+  background: #f3efe9;
+}
+
 .task-item .delete-btn {
   border: none;
   background: transparent;
@@ -175,6 +193,21 @@ h1 {
   Tambahkan style untuk mode edit, misalnya input text yang muncul
   menggantikan <span> saat task sedang diedit.
 */
+.task-item .task-edit-input {
+  flex: 1;
+  border: 1px solid #d4cab8;
+  border-radius: 8px;
+  background: #f7f2ea;
+  color: #1f2937;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.task-item .task-edit-input:focus {
+  border-color: #1f2a44;
+  box-shadow: 0 0 0 2px rgba(31, 42, 68, 0.12);
+}
 
 /*
   TODO (Fitur #5 & #6 - Counter & Clear Completed):
