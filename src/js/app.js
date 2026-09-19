@@ -213,3 +213,24 @@ taskForm.addEventListener("submit", (event) => {
 });
 
 renderTasks();
+
+const themeToggleBtn = document.getElementById("theme-toggle");
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggleBtn.textContent = "Light Mode";
+}
+
+themeToggleBtn.addEventListener("click", () => {
+    // Menambah/menghapus class 'dark-mode' pada elemen <body>
+    document.body.classList.toggle("dark-mode");
+    
+    // Ubah teks tombol dan simpan preferensi ke localStorage
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        themeToggleBtn.textContent = "Light Mode";
+    } else {
+        localStorage.setItem("theme", "light");
+        themeToggleBtn.textContent = "Dark Mode";
+    }
+});
