@@ -7,6 +7,7 @@
 const taskForm = document.getElementById("task-form");
 const taskInput = document.getElementById("task-input");
 const taskList = document.getElementById("task-list");
+const taskCounter = document.getElementById("task-counter");
 
 // Struktur satu task: { id, text, completed }
 // NOTE: "completed" sudah disiapkan di data model, tapi belum
@@ -39,6 +40,11 @@ function renderTasks() {
     emptyState.className = "empty-state";
     emptyState.textContent = "Belum ada task. Tambahkan satu di atas!";
     taskList.appendChild(emptyState);
+    
+    if (taskCounter) {
+      taskCounter.textContent = "0 task tersisa";
+    }
+    return;
   } else {
     // TODO (Fitur #3 - Filter Task):
     // Sebelum di-loop, filter dulu "tasks" sesuai filter aktif
