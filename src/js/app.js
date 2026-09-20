@@ -237,6 +237,9 @@ taskForm.addEventListener("submit", (event) => {
   if (text === "") {
     alert("Masukkan deskripsi task terlebih dahulu!");
     return;
+  } else if (text.length > 100) {
+    alert("Maksimal 100 karakter!");
+    return;
   }
   modalInput.value = text;
   modalOverlay.classList.remove("hidden");
