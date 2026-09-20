@@ -24,8 +24,7 @@ max-width: 480px;
 background: #f4eee6;
 border-radius: 12px;
 padding: 24px;
-box-shadow: 0 40px 16px rgba(0, 0, 0, 0.08);
-
+box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .modal-overlay {
@@ -286,16 +285,14 @@ background: #f3efe9;
 .task-item .delete-btn {
 border: none;
 background: transparent;
+color: #ef4444;
 font-size: 1.1rem;
 cursor: pointer;
 line-height: 1;
-
 }
 
 .task-item .delete-btn:hover {
 color: #b91c1c;
-background: #f3efe9;
-
 }
 
 .empty-state {
