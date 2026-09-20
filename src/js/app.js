@@ -41,11 +41,11 @@ function renderTasks() {
     emptyState.className = "empty-state";
     emptyState.textContent = "Belum ada task. Tambahkan satu di atas!";
     taskList.appendChild(emptyState);
-    
+
     if (taskCounter) {
       taskCounter.textContent = "0 task tersisa";
     }
-    return;
+    // return;
   } else {
     // TODO (Fitur #3 - Filter Task):
     // Sebelum di-loop, filter dulu "tasks" sesuai filter aktif
@@ -77,7 +77,7 @@ function renderTasks() {
       const span = document.createElement("span");
       span.className = "task-text";
       span.textContent = task.text;
-      
+
       let badge = null;
       if (task.panicLevel && !task.completed) {
           badge = document.createElement("span");
@@ -93,13 +93,14 @@ function renderTasks() {
       editBtn.type = "button";
       editBtn.className = "edit-btn";
       editBtn.setAttribute("aria-label", "Edit task");
-      editBtn.textContent = "✎";
+      editBtn.innerHTML = `<img src="../assets/img/penedit.svg" width="20"/>`
       editBtn.addEventListener("click", () => {
         const input = document.createElement("input");
         input.type = "text";
         input.className = "task-edit-input";
         input.value = task.text;
         input.setAttribute("aria-label", "Edit task text");
+        input.required = true;
 
         const saveEdit = () => {
           editTask(task.id, input.value);
@@ -120,7 +121,7 @@ function renderTasks() {
 
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "delete-btn";
-      deleteBtn.textContent = "✕";
+      deleteBtn.innerHTML = `<img src="../assets/img/x.svg" width="16"/>`
       deleteBtn.addEventListener("click", () => deleteTask(task.id));
 
       li.appendChild(checkbox);
@@ -144,7 +145,7 @@ function renderTasks() {
   // Setiap kali renderTasks() dipanggil, data "tasks" sudah berubah,
   // jadi ini tempat yang pas untuk menyimpan ulang ke localStorage.
   // Hint: localStorage.setItem("tasks", JSON.stringify(tasks));
-  
+
   // Simpan data tasks ke localStorage setiap kali renderTasks() dipanggil.
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -200,6 +201,7 @@ function editTask(id, newText) {
 
 function clearCompleted() {
   tasks = tasks.filter((task) => !task.completed);
+
   renderTasks();
 }
 
@@ -230,9 +232,15 @@ const btnSubmitModal = document.getElementById("btn-submit");
 
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  
+
   const text = taskInput.value.trim();
-  if (text === "") return;
+  if (text === "") {
+    alert("Masukkan deskripsi task terlebih dahulu!");
+    return;
+  } else if (text.length > 100) {
+    alert("Maksimal 100 karakter!");
+    return;
+  }
   modalInput.value = text;
   modalOverlay.classList.remove("hidden");
 });
@@ -242,8 +250,8 @@ btnBatal.addEventListener("click", () => {
 });
 
 btnSubmitModal.addEventListener("click", () => {
-  addTask(modalInput.value, selectedPanik, selectedKapan); 
-  
+  addTask(modalInput.value, selectedPanik, selectedKapan);
+
   taskInput.value = "";
   modalOverlay.classList.add("hidden");
   taskInput.focus();
@@ -297,7 +305,7 @@ if (localStorage.getItem("theme") === "dark") {
 themeToggleBtn.addEventListener("click", () => {
     // Menambah/menghapus class 'dark-mode' pada elemen <body>
     document.body.classList.toggle("dark-mode");
-    
+
     // Ubah teks tombol dan simpan preferensi ke localStorage
     if (document.body.classList.contains("dark-mode")) {
         localStorage.setItem("theme", "dark");
