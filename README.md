@@ -1,7 +1,3 @@
----
-Created at: 2026-09-20 11:03
----
-
 Kelompok 4
 
 | Nama                        | NRP        |
