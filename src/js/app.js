@@ -180,7 +180,7 @@ function renderTasks() {
   // Setiap kali renderTasks() dipanggil, data "tasks" sudah berubah,
   // jadi ini tempat yang pas untuk menyimpan ulang ke localStorage.
   // Hint: localStorage.setItem("tasks", JSON.stringify(tasks));
-  
+
   // Simpan data tasks ke localStorage setiap kali renderTasks() dipanggil.
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -256,7 +256,7 @@ filterBtns.forEach(btn => {
 });
 
 const panikBtns = document.querySelectorAll('#group-panik .btn-pill');
-const kapanBtns = document.querySelectorAll('#group-kapan .btn-pill');
+  const kapanBtns = document.querySelectorAll('#group-kapan .btn-pill');
 
 document.getElementById('btn-tambah').addEventListener('click', () => {
     modal.classList.remove('hidden');
