@@ -84,17 +84,12 @@ transition: 0.2s;
 background-color: #272a45;
 }
 
-/*
-TODO (Fitur #3 - Filter Task):
-Tambahkan style untuk .filters dan .filter-btn di sini.
-Tandai tombol filter yang sedang aktif, misalnya dengan class ".active".
-*/
-
 .filters {
 display: flex;
 justify-content: center;
 gap: 8px;
 margin-bottom: 24px;
+flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -145,12 +140,6 @@ align-items: center;
 gap: 16px;
 }
 
-/*
-TODO (Fitur #1 - Tandai Selesai):
-Tambahkan style untuk task yang sudah selesai, misalnya class ".completed"
-pada .task-item yang membuat teksnya dicoret (text-decoration: line-through)
-dan warnanya lebih pudar.
-*/
 .task-item.completed .task-text {
 text-decoration: line-through;
 color: #9ca3af;
@@ -165,6 +154,7 @@ cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;
+flex-shrink: 0;
 }
 
 .task-item.completed .circle-checkbox {
@@ -175,6 +165,7 @@ border-color: #141624;
 .task-content {
 flex: 1;
 word-break: break-word;
+min-width: 0;
 }
 
 .task-text {
@@ -199,6 +190,7 @@ text-transform: uppercase;
 .task-actions {
 display: flex;
 gap: 8px;
+flex-shrink: 0;
 }
 
 .icon-btn {
@@ -229,14 +221,8 @@ color: #ef4444;
 .delete-btn:hover {
 color: #b91c1c;
 background: #f3efe9;
-
 }
 
-/*
-TODO (Fitur #2 - Edit Task):
-Tambahkan style untuk mode edit, misalnya input text yang muncul
-menggantikan  saat task sedang diedit.
-*/
 .task-item .task-edit-input {
 flex: 1;
 border: 1px solid #d4cab8;
@@ -264,6 +250,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 z-index: 100;
+padding: 16px;
 }
 
 .modal-overlay.hidden {
@@ -271,8 +258,10 @@ display: none;
 }
 
 .modal-card {
-width: 90%;
+width: 100%;
 max-width: 420px;
+max-height: 90vh;
+overflow-y: auto;
 }
 
 .modal-title {
@@ -338,11 +327,6 @@ padding: 16px 0;
 font-size: 0.9rem;
 }
 
-/*
-TODO (Fitur #5 & #6 - Counter & Clear Completed):
-Tambahkan style untuk .footer yang berisi counter task dan tombol
-"Hapus yang Selesai".
-*/
 .footer {
 display: flex;
 justify-content: space-between;
@@ -352,6 +336,8 @@ padding-top: 16px;
 border-top: 1px solid #e5e7eb;
 font-size: 0.875rem;
 color: #6b7280;
+gap: 10px;
+flex-wrap: wrap;
 }
 
 .clear-btn {
@@ -439,7 +425,6 @@ body.dark-mode .circle-checkbox {
 border-color: #f3f4f6;
 }
 
-
 body.dark-mode .task-item.completed .circle-checkbox {
 background-color: #6b7280;
 border-color: #6b7280;
@@ -448,4 +433,58 @@ border-color: #6b7280;
 body.dark-mode .clear-btn:hover {
 background-color: rgba(239, 68, 68, 0.2);
 color: #fca5a5;
+}
+
+@media screen and (max-width: 480px) {
+body {
+padding: 16px 8px;
+}
+
+.app-container {
+padding: 0;
+}
+
+.todo-card, .modal-card {
+padding: 20px 16px;
+border-radius: 16px;
+}
+
+.input-group {
+flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.btn-dark {
+width: 100%;
+padding: 12px;
+}
+
+.task-item {
+padding: 12px;
+gap: 12px;
+}
+
+.footer {
+flex-direction: column;
+align-items: stretch;
+gap: 12px;
+text-align: center;
+}
+
+.clear-btn {
+align-self: center;
+}
+
+.modal-actions {
+flex-direction: column-reverse;
+gap: 12px;
+width: 100%;
+}
+
+.modal-actions .btn-dark,
+.modal-actions .btn-text {
+width: 100%;
+text-align: center;
+}
 }
